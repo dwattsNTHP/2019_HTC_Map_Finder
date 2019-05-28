@@ -62,9 +62,10 @@ td {
 }
 
 .leaflet-container a.leaflet-popup-close-button {
-    color: #202f49 !important;
+    color: #e55925 !important;
     font-family: 22px/20px 'Montserrat', sans-serif !important;
-    right: 8px!important;
+    right: 4px!important;
+    top: 3px !important;
 }
 
 
@@ -106,7 +107,7 @@ td {
 }
 
 .closeX:hover {
-    color: #202f49;
+    color: #e55925;
 }
 
 .btn-group-vertical {

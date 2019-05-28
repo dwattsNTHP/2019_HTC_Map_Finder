@@ -11,6 +11,13 @@ var backgroundMap = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.
         
 backgroundMap.addTo(map);
 
+var usStates;
+var congDists;
+
+var selection;
+
+var selectedLayer;
+
 //Style and Add US Outline Layer
 
 var usBorder = L.esri.featureLayer({
@@ -24,26 +31,37 @@ var usBorder = L.esri.featureLayer({
 
 //Style and Add State Layer + Add popup text
 
-function hiLiteState(e) {
-	var layer = e.target;
+function stateStyle(feature) {
+    return {
+        color: '#7ed3f6',
+        weight: .5,
+        fillOpacity: .1
+    };
+}
 
-	layer.setStyle({
-        weight: 2,
-        color: '#00679d',
-        dashArray: '',
-		fillOpacity: 0.1
+function stateSelectedStyle(feature) {
+    return {
+        weight: 3,
+        color: '#e55925',
+        fillColor: '#7ed3f6',
+        fillOpacity: .1,
+    };
+}
+
+function stateOnEachFeature(feature, layer) {
+    layer.on({
+        click: function(e) {
+            if (selection) {
+                resetStyles();
+            }
+        
+            e.target.setStyle(stateSelectedStyle());
+            selection = e.target;
+            selectedLayer = usStates;
+            
+            L.DomEvent.stopPropagation(e);
+        }
     });
-}
-    
-function resetState(e) {
-    usStates.resetStyle(e.target);
-}
-    
-function onEachStateFeature (feature, layer) {
-		layer.on({
-			mouseover: hiLiteState,
-			mouseout: resetState
-		});
 }
 
 map.createPane('usStatePane');
@@ -51,15 +69,13 @@ map.createPane('usStatePane');
 var usStates = L.esri.featureLayer({
     url: 'https://services3.arcgis.com/8mRVhBBtAu5eqZUu/arcgis/rest/services/US_State_Boundaries_HTC/FeatureServer/0', 
     pane: 'usStatePane',
-    style: {
-        color: '#7ed3f6',
-        weight: .5,
-        fillOpacity: .1,
-    },
-    onEachFeature: onEachStateFeature,
-}).addTo(map);
+    style: stateStyle,
+    onEachFeature: stateOnEachFeature
+});
 
-var stateTemplate = '<table><tbody><tr><td><strong><font size="3">{NAME}</font></strong></td></tr><table><tbody><tr><td style="padding-top: 5px;"><strong><a href={URL} target="_blank">Click here for HTC map and economic factsheet</a></strong></td></tr></tbody></table>';
+usStates.addTo(map);
+
+var stateTemplate = '<table><tbody><tr><td><strong><font size="3">{NAME} Test</font></strong></td></tr><table><tbody><tr><td style="padding-top: 5px;"><strong><a href={URL} target="_blank">Click here for HTC map and economic factsheet</a></strong></td></tr></tbody></table>';
   
 usStates.bindPopup( function (layer) {
     return L.Util.template(stateTemplate, layer.feature.properties);
@@ -68,26 +84,37 @@ usStates.bindPopup( function (layer) {
 
 //Style and Add CD Layer + Add popup text
 
-function hiLiteCong(e) {
-	var layer = e.target;
-
-	layer.setStyle({
-        weight: 2,
+function congStyle(feature) {
+    return {
         color: '#00679d',
-        dashArray: '',
-		fillOpacity: 0.7,
+        weight: 1,
+        fillOpacity: .3,
+    };
+}
+
+function congSelectedStyle(feature) {
+    return {
+        weight: 3,
+        color: '#e55925',
+        fillColor: '#00679d',
+        fillOpacity: .3,
+    };
+}
+
+function congOnEachFeature(feature, layer) {
+    layer.on({
+        click: function(e) {
+            if (selection) {
+                resetStyles();
+            }
+        
+            e.target.setStyle(congSelectedStyle());
+            selection = e.target;
+            selectedLayer = congDists;
+            
+            L.DomEvent.stopPropagation(e);
+        }
     });
-}
-    
-function resetCong(e) {
-    congDists.resetStyle(e.target);
-}
-    
-function onEachCongFeature (feature, layer) {
-		layer.on({
-			mouseover: hiLiteCong,
-			mouseout: resetCong,
-		});
 }
 
 map.createPane('congDistPane');
@@ -95,19 +122,31 @@ map.createPane('congDistPane');
 var congDists = L.esri.featureLayer({
     url: 'https://services3.arcgis.com/8mRVhBBtAu5eqZUu/arcgis/rest/services/Congressional_District_116th/FeatureServer/0', 
     pane: 'congDistPane',
-    style: {
-        color: '#00679d',
-        weight: 1,
-        fillOpacity: .3,
-    },
-    onEachFeature: onEachCongFeature,
-}).addTo(map);
+    style: congStyle,
+    onEachFeature: congOnEachFeature
+});
+
+congDists.addTo(map);
 
 var congDistTemplate = '<center><table><tbody><tr><td><strong><font size="3">{State} | {CongDist} District</font></strong></td></tr><tr><td>Rep. {FName} {LName} ({Party})</td></tr></tbody></table><table><tbody><tr><td style="padding-top: 5px;"><strong><a href={URL} target="_blank">Click here for HTC map and economic factsheet</a></strong></td></tr></tbody></table></center>';
 
 congDists.bindPopup(function (layer) {
     return L.Util.template(congDistTemplate, layer.feature.properties);
 });
+
+// Code to reset layers
+
+map.addEventListener('click', function(e) {
+    if (selection) {
+        resetStyles();
+        selection = null
+    }
+});
+
+function resetStyles(){
+    if (selectedLayer === congDists) selectedLayer.resetStyle(selection);
+    else if (selectedLayer === usStates) selectedLayer.resetStyle(selection);
+}
 
 //Add Zoom Control 
 
