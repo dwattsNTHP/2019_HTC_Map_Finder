@@ -75,7 +75,7 @@ var usStates = L.esri.featureLayer({
 
 usStates.addTo(map);
 
-var stateTemplate = '<table><tbody><tr><td><strong><font size="3">{NAME} Test</font></strong></td></tr><table><tbody><tr><td style="padding-top: 5px;"><strong><a href={URL} target="_blank">Click here for HTC map and economic factsheet</a></strong></td></tr></tbody></table>';
+var stateTemplate = '<table><tbody><tr><td><strong><font size="3">{NAME}</font></strong></td></tr><table><tbody><tr><td style="padding-top: 5px;"><strong><a href={URL} target="_blank">Click here for HTC map and economic factsheet</a></strong></td></tr></tbody></table>';
   
 usStates.bindPopup( function (layer) {
     return L.Util.template(stateTemplate, layer.feature.properties);
@@ -114,7 +114,7 @@ function congOnEachFeature(feature, layer) {
             
             L.DomEvent.stopPropagation(e);
         }
-    });
+    });      
 }
 
 map.createPane('congDistPane');
