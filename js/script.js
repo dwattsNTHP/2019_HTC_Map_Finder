@@ -33,8 +33,10 @@ var usBorder = L.esri.featureLayer({
 
 function stateStyle(feature) {
     return {
-        color: '#7ed3f6',
-        weight: .5,
+        color: '#00679d',
+        weight: .8,
+        opacity: .6,
+        fillColor: '#7ed3f6',
         fillOpacity: .1
     };
 }
@@ -42,10 +44,13 @@ function stateStyle(feature) {
 function stateSelectedStyle(feature) {
     return {
         weight: 3,
-        color: '#e55925',
-        fillColor: '#7ed3f6',
-        fillOpacity: .1,
+        color: '#202f49',
+        fillOpacity: 0.4
     };
+    
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
 }
 
 function stateOnEachFeature(feature, layer) {
@@ -59,6 +64,7 @@ function stateOnEachFeature(feature, layer) {
             selection = e.target;
             selectedLayer = usStates;
             
+            layer.bringToFront(e);
             L.DomEvent.stopPropagation(e);
         }
     });
@@ -85,21 +91,26 @@ usStates.bindPopup( function (layer) {
 //Style and Add CD Layer + Add popup text
 
 function congStyle(feature) {
-    return {
-        color: '#00679d',
-        weight: 1,
-        fillOpacity: .3,
-    };
-}
+    if(feature.properties.Party === 'R'){
+        return {color: '#ff0000', weight: .4, fillColor: '#ff0000', fillOpacity: .3};
+    } else if (feature.properties.Party === 'D'){
+        return {color: '#4177f4', weight: .4, fillColor: '#4177f4', fillOpacity: .4}
+    }
+};
+
 
 function congSelectedStyle(feature) {
     return {
-        weight: 3,
-        color: '#e55925',
-        fillColor: '#00679d',
-        fillOpacity: .3,
+        weight: 2,
+        color: '#202f49',
+        fillOpacity: 0.7
     };
+    
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
 }
+
 
 function congOnEachFeature(feature, layer) {
     layer.on({
@@ -112,6 +123,7 @@ function congOnEachFeature(feature, layer) {
             selection = e.target;
             selectedLayer = congDists;
             
+            layer.bringToFront(e);
             L.DomEvent.stopPropagation(e);
         }
     });      

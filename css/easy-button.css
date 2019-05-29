@@ -17,7 +17,8 @@
   background-repeat: no-repeat;
   overflow: hidden;
   display: block;
-  padding-top: 6px;
+  padding-top: 7px;
+  padding-left: -1px;  
 }
 
 .leaflet-bar button:hover {

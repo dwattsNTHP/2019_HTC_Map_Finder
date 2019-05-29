@@ -22,7 +22,7 @@ p {
 
 #navbox h5  {
     font-weight: regular;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 19px;
     margin-top: 12px;
     line-height: 23px
@@ -68,10 +68,14 @@ td {
     top: 3px !important;
 }
 
+.leaflet-container a.leaflet-popup-close-button:hover {
+    color: #202f49 !important;
+}
+
 
 .infobox {
 	width: 325px;
-    height: 450px;
+    height: 550px;
 	position: fixed;
 	z-index: -1;
 	bottom: 40px;
@@ -86,7 +90,7 @@ td {
 }
 
 .textbox {
-	width: 300px;
+	width: 304px;
     height: 425px;
 	position: fixed;
 	z-index: -1;
@@ -96,18 +100,28 @@ td {
 	opacity: 1;
 }
 
-
+.legendbox {
+	width: 304px;
+    height: 160px;
+	position: fixed;
+	z-index: -1;
+	background: #F5F5F5;
+	overflow-x: hidden;
+	padding:  10px;
+	opacity: 1;
+    bottom: 40px;
+}
 
 .closeX {
-    color: #7ed3f6;
-    font: 17px/20px 'Montserrat', sans-serif;
+    color: #e55925;
+    font: 18px/20px 'Montserrat', sans-serif;
     font-weight: bold;
     right: 8px;
     cursor: pointer;
 }
 
 .closeX:hover {
-    color: #e55925;
+    color: #202f49;
 }
 
 .btn-group-vertical {
@@ -182,3 +196,48 @@ td {
 	right: 40px;
 }
 
+.my-legend .legend-title {
+    text-align: left;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.my-legend .legend-scale ul {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    float: left;
+    list-style: none;
+}
+
+.my-legend .legend-scale ul li {
+    font-size: 12.5px;
+    list-style: none;
+    margin-left: 0;
+    line-height: 18px;
+    margin-bottom: 10px;
+}
+
+.my-legend ul.legend-labels li span {
+    display: block;
+    float: left;
+    height: 22px;
+    width: 42px;
+    margin-right: 10px;
+    margin-left: 0;
+    border: 1.5px solid #202f49;
+    opacity: .5;
+
+    border-radius: 5px;
+}
+
+.my-legend .legend-source {
+    font-size: 70%;
+    color: #000000;
+    clear: both;
+}
+  
+.my-legend a {
+    color: #000000;
+}
