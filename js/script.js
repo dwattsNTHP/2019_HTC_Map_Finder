@@ -129,11 +129,16 @@ function congOnEachFeature(feature, layer) {
     });      
 }
 
+var congFilter = function(feature) {
+	if (feature.properties.Group_ === '1') return true
+}
+
 map.createPane('congDistPane');
 
 var congDists = L.esri.featureLayer({
-    url: 'https://services3.arcgis.com/8mRVhBBtAu5eqZUu/arcgis/rest/services/Congressional_District_116th/FeatureServer/0', 
+    url: 'https://services3.arcgis.com/8mRVhBBtAu5eqZUu/arcgis/rest/services/Congressional_Districts_(116th)/FeatureServer/0', 
     pane: 'congDistPane',
+    where: "Group_ = 1",
     style: congStyle,
     onEachFeature: congOnEachFeature
 });
