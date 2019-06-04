@@ -104,14 +104,14 @@ td {
 
 .legendbox {
 	width: 304px;
-    height: 150px;
+    height: 100px;
 	position: fixed;
 	z-index: -1;
 	background: #F5F5F5;
 	overflow-x: hidden;
 	padding:  10px;
 	opacity: 1;
-    bottom: 0px;
+    bottom: 50px;
 }
 
 .closeX {

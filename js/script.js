@@ -1,5 +1,5 @@
-var southWest = L.latLng(12, -175);
-var northEast = L.latLng(71, -45);
+var southWest = L.latLng(12, -179);
+var northEast = L.latLng(71, -47);
 
 var map = L.map('map', {zoomControl: false, maxBounds: L.latLngBounds(southWest, northEast)}).setView([39.828049, -98.578857], 5);
             
