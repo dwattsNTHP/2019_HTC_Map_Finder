@@ -70,11 +70,13 @@ function stateOnEachFeature(feature, layer) {
     });
 }
 
+
 map.createPane('usStatePane');
 
 var usStates = L.esri.featureLayer({
     url: 'https://services3.arcgis.com/8mRVhBBtAu5eqZUu/arcgis/rest/services/US_State_Boundaries_HTC/FeatureServer/0', 
     pane: 'usStatePane',
+    where: "NAME <> 'Puerto Rico'",
     style: stateStyle,
     onEachFeature: stateOnEachFeature
 });
@@ -89,6 +91,8 @@ usStates.bindPopup( function (layer) {
 
 
 //Style and Add CD Layer + Add popup text
+
+/*
 
 function congStyle(feature) {
     if(feature.properties.Party === 'R'){
@@ -136,7 +140,7 @@ var congFilter = function(feature) {
 map.createPane('congDistPane');
 
 var congDists = L.esri.featureLayer({
-    url: 'https://services3.arcgis.com/8mRVhBBtAu5eqZUu/arcgis/rest/services/Congressional_Districts_(116th)/FeatureServer/0', 
+    url: 'https://services3.arcgis.com/8mRVhBBtAu5eqZUu/arcgis/rest/services/Congressional_Districts_(116th)_Simplified/FeatureServer/0', 
     pane: 'congDistPane',
     where: "Group_ = 1",
     style: congStyle,
@@ -150,6 +154,8 @@ var congDistTemplate = '<center><table><tbody><tr><td><strong><font size="3">{St
 congDists.bindPopup(function (layer) {
     return L.Util.template(congDistTemplate, layer.feature.properties);
 });
+
+*/
 
 // Code to reset layers
 
@@ -219,7 +225,5 @@ $("#closeButton").click(function(){
 var infoBox = L.easyButton('fa-info-circle fa-lg',  function(btn) {
     $("div.infobox").fadeToggle(1000);
 }, 'Info Box').addTo(map);
-
-
 
 

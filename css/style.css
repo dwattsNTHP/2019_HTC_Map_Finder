@@ -63,7 +63,6 @@ td {
 
 .leaflet-container a.leaflet-popup-close-button {
     color: #e55925 !important;
-    font-family: 22px/20px 'Montserrat', sans-serif !important;
     right: 4px!important;
     top: 3px !important;
 }
@@ -72,10 +71,11 @@ td {
     color: #202f49 !important;
 }
 
+/*When adding CDs, reset .infobox height to 600px*/
 
 .infobox {
 	width: 325px;
-    height: 650px;
+    height: 550px;
 	position: fixed;
 	z-index: -1;
 	bottom: 40px;
@@ -100,21 +100,23 @@ td {
 	opacity: 1;
 }
 
+/*When adding CDs, reset .legendbox bottom to 40px, height to 160px*/
+
 .legendbox {
 	width: 304px;
-    height: 160px;
+    height: 150px;
 	position: fixed;
 	z-index: -1;
 	background: #F5F5F5;
 	overflow-x: hidden;
 	padding:  10px;
 	opacity: 1;
-    bottom: 40px;
+    bottom: 0px;
 }
 
 .closeX {
     color: #e55925;
-    font: 18px/20px 'Montserrat', sans-serif;
+    font: 17px/20px 'Montserrat', sans-serif;
     font-weight: bold;
     right: 8px;
     cursor: pointer;
@@ -240,4 +242,20 @@ td {
   
 .my-legend a {
     color: #000000;
+}
+
+.filterBox {
+	width: 200px;
+    height: 200px;
+	position: fixed;
+	z-index: -1;
+	bottom: 200px;
+	right: 40px;
+	background: #F5F5F5;
+	overflow-x: hidden;
+	padding: 5px 5px 5px;
+	opacity: 1;
+    border-radius: 7px;
+    border: 5px solid #00679d;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
