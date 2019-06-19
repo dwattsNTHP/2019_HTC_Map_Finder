@@ -92,7 +92,7 @@ usStates.bindPopup( function (layer) {
 
 //Style and Add CD Layer + Add popup text
 
-/*
+
 
 function congStyle(feature) {
     if(feature.properties.Party === 'R'){
@@ -154,8 +154,6 @@ var congDistTemplate = '<center><table><tbody><tr><td><strong><font size="3">{St
 congDists.bindPopup(function (layer) {
     return L.Util.template(congDistTemplate, layer.feature.properties);
 });
-
-*/
 
 // Code to reset layers
 

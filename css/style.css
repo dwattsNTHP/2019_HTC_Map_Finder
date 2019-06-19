@@ -75,7 +75,7 @@ td {
 
 .infobox {
 	width: 325px;
-    height: 570px;
+    height: 600px;
 	position: fixed;
 	z-index: -1;
 	bottom: 40px;
@@ -100,11 +100,11 @@ td {
 	opacity: 1;
 }
 
-/*When adding CDs, reset .legendbox bottom to 40px, height to 160px*/
+/*When adding CDs, reset .legendbox bottom to 50px, height to 160px*/
 
 .legendbox {
 	width: 304px;
-    height: 100px;
+    height: 150px;
 	position: fixed;
 	z-index: -1;
 	background: #F5F5F5;
