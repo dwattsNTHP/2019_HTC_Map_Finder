@@ -1,7 +1,7 @@
 var southWest = L.latLng(12, -179);
 var northEast = L.latLng(71, -47);
 
-var map = L.map('map', {zoomControl: false, maxBounds: L.latLngBounds(southWest, northEast)}).setView([39.828049, -98.578857], 5);
+var map = L.map('map', {zoomControl: false, maxBounds: L.latLngBounds(southWest, northEast)}).setView([39.828049, -98.578857], 4);
             
 var backgroundMap = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -147,7 +147,7 @@ var congDists = L.esri.featureLayer({
     onEachFeature: congOnEachFeature
 });
 
-congDists.addTo(map);
+//congDists.addTo(map);
 
 var congDistTemplate = '<center><table><tbody><tr><td><strong><font size="3">{State} | {CongDist} District</font></strong></td></tr><tr><td>Rep. {FName} {LName} ({Party})</td></tr></tbody></table><table><tbody><tr><td style="padding-top: 5px;"><strong><a href={URL} target="_blank">Click here for HTC map and economic factsheet</a></strong></td></tr></tbody></table></center>';
 

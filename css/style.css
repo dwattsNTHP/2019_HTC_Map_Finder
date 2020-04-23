@@ -75,7 +75,7 @@ td {
 
 .infobox {
 	width: 325px;
-    height: 600px;
+    height: 470px;
 	position: fixed;
 	z-index: -1;
 	bottom: 40px;
@@ -91,18 +91,18 @@ td {
 
 .textbox {
 	width: 304px;
-    height: 520px;
+    height: 450px;
 	position: fixed;
 	z-index: -1;
 	background: #F5F5F5;
-	overflow-x: hidden;
+	/*overflow-x: hidden;*/
 	padding:  10px;
 	opacity: 1;
 }
 
 /*When adding CDs, reset .legendbox bottom to 50px, height to 160px*/
 
-.legendbox {
+/*.legendbox {
 	width: 304px;
     height: 150px;
 	position: fixed;
@@ -112,7 +112,7 @@ td {
 	padding:  10px;
 	opacity: 1;
     bottom: 50px;
-}
+}*/
 
 .closeX {
     color: #e55925;
